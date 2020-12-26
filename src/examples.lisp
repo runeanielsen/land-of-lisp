@@ -106,3 +106,57 @@
 (if (find-if #'oddp '(2 4 5 6))
     'there-is-an-odd-number
     'there-is-no-odd-number) ; ==> THERE-IS-AN-ODD-NUMBER
+
+;;; Page 63 - eq, equal, and more
+;;; 1. Use eq to compare symbols
+;;; 2. Use equal for everything else
+
+(defparameter *fruit* 'apple)
+
+(cond ((eq *fruit* 'apple) 'its-an-apple)
+      ((eq *fruit* 'orange)) 'its-an-orange) ; ==> ITS-AN-APPLE
+
+;;; Equal can check if two things are isomorphic - meaning look the same
+
+;;; Comparing symbols
+(equal 'apple 'apple) ;; ==> T
+
+;;; Comparing lists
+(equal (list 1 2 3) (list 1 2 3)) ; ==> T
+
+;;; Equal lists created in different ways still compare as the same
+(equal '(1 2 3) (cons 1 (cons 2 (cons 3 ())))) ; ==> T
+
+;;; Comparing integers
+(equal 5 5) ; ==> T
+
+;;; Comparing floating point numbers
+(equal 2.5 2.5) ; ==> T
+
+;;; Comparing strings
+(equal "foo" "foo")
+
+;;; Comparing characters
+(equal #\a #\a)
+
+;;; Page 65 - eql is similar to eq command, but unlike eq, it also handles comparisons
+;;; of numbers and characters
+
+;;; Comparing symbol
+(eql 'foo 'foo) ; ==> T
+
+;;; Comparing numbers
+(eql 3.4 3.4) ; ==> T
+
+;;; Comparing characters
+(eql #\a #\a)
+
+;;; Page 65 - equalp is esentially the same as equal, except
+;;; that it can compare strings with different capitalizations
+;;; that is can compare integers against floating-point numbers
+
+;;; Comparing strings with different CAPS
+(equalp "Bob Smith" "bob smith") ; ==> T
+
+;;; Comparing integers against floating point numbers
+(equalp 0 0.0) ; ==> T
