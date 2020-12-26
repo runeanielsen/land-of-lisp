@@ -60,3 +60,35 @@
 (unless (oddp 4)
   (setf *number-is-odd* nil)
   'even-number) ; => *number-is-odd* will eval to NIL and returns 'even-number
+
+;;; Page 56 - Using cond
+(defvar *arch-enemy* nil)
+(defun pudding-eater-cond (person)
+  (cond ((eq person 'hentry) (setf *arch-enemy* 'stupid-lisp-alien)
+         '(curse you lisp alien - you ate my pudding))
+        ((eq person 'johnny) (setf *arch-enemy* 'useless-old-johnny)
+         '(i hope you choke on my pudding johnny))
+        (t '(why you you eat my pudding stranger?))))
+
+;;; Page 57 - Using case
+(defun pudding-eater (person)
+  (case person
+    ((henry) (setf *arch-enemy* 'stupid-lisp-alien)
+     '(curse you lisp alien - you ate my pudding))
+    ((johnny) (setf *arch-enemy* 'useless-old-johnny)
+     '(i hope you choke on my pudding johnny))
+    (otherwise '(why you ate my pudding stranger?))))
+
+;;; Page 58 - Stealth conditionals 'and' 'or'
+(and (oddp 5) (oddp 7) (oddp 9)) ; ==> T
+(or (oddp 4) (oddp 7) (oddp 8)) ; ==> T
+
+;;; Example of using conditionals to set a global variable to true.
+;;; This examples showcases that Lisp uses shortcut Boolean evaluation.
+(defparameter *is-it-even* nil)
+(or (oddp 4) (setf *is-it-even* t))
+(*is-it-even*) ; ==> T
+
+(setf *is-it-even* nil)
+(or (oddp 5) (setf *is-it-even* t))
+(*is-it-even*) ; ==> NIL
