@@ -92,3 +92,17 @@
 (setf *is-it-even* nil)
 (or (oddp 5) (setf *is-it-even* t))
 (*is-it-even*) ; ==> NIL
+
+;;; Return more than the Truth
+(if (member 1 '(3 4 1 5))
+    'one-is-in-the-list
+    'one-is-not-in-the-list) ; ==> ONE-IS-IN-THE-LIST
+
+(if (member nil '(3 nil 1 5))
+    'nil-is-in-the-list
+    'nil-is-not-in-the-list) ; ==> NIL-IS-IN-THE-LIST
+
+;;; Page 61 - 'find-if'
+(if (find-if #'oddp '(2 4 5 6))
+    'there-is-an-odd-number
+    'there-is-no-odd-number) ; ==> THERE-IS-AN-ODD-NUMBER
