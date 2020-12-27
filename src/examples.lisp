@@ -160,3 +160,35 @@
 
 ;;; Comparing integers against floating point numbers
 (equalp 0 0.0) ; ==> T
+
+;;; Page 87 - print and read
+(defun say-hello ()
+  (print "Please type your name:")
+  (let ((name (read)))
+    (print "Nice to meet you, ")
+    (print name)))
+
+(defun add-five ()
+  (print "please enter a number:")
+  (let ((num (read)))
+    (print "When I add five I get")
+    (print (+ num 5))))
+
+;;; Note that we put an explicit quote on the front of each value.
+;;; It could be omitted in all cases but the symbol, since
+;;; a symbol can also refer to functions.
+(print '3) ; an integer
+(print '3.4) ; a float
+(print 'foo) ; a symbol
+(print '"foo") ; a string
+(print '#\a) ; a character
+
+(progn (princ "This sentence will be interrupted")
+       (princ #\newline)
+       (princ "by an annoying newline character."))
+
+(defun say-hello-v2 ()
+  (princ "Please type your name:")
+  (let ((name (read-line)))
+    (princ "Nice to meet you, ")
+    (princ name)))
