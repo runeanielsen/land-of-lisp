@@ -192,3 +192,35 @@
   (let ((name (read-line)))
     (princ "Nice to meet you, ")
     (princ name)))
+
+;;; Page 104 - Lambda
+(lambda (n) (/ n 2)) ; ==> FUNCTION (LAMBDA (N))
+
+;; calling the lambda function
+((lambda (n) (/ n 2)) 20) ; ==> 10
+
+;; passing it to mapcar
+(mapcar (lambda (n) (/ n 2)) '(2 4 6)) ; ==> (1 2 3)
+
+;; passing a lambda function as parameter
+(defun my-test-function (my-lambda-func n)
+  (funcall my-lambda-func n))
+
+;; calling the function with lambda created function
+(my-test-function (lambda (n) (/ n 2)) 10)
+
+;; Page 112 - Lists
+
+;; Example shows that assoc always find the first element in the association list even if
+;; there are multiple with the same key.
+(defparameter *drink-order* '((bill . double-espresso)
+                              (lisa . small-drip-coffee)
+                              (john . medium-latte)))
+
+(assoc 'lisa *drink-order*) ; ==> (LISA . SMALL-DRIP-COFFEE)
+
+(push '(lisa . large-mocha-with-whipped-cream) *drink-order*) ; ==>
+; ((LISA . LARGE-MOCHA-WITH-WHIPPED-CREAM) (BILL . DOUBLE-ESPRESSO)
+; (LISA . SMALL-DRIP-COFFEE) (JOHN . MEDIUM-LATTE))
+
+(assoc 'lisa *drink-order*) ; ==> (LISA . LARGE-MOCHA-WITH-WHIPPED-CREAM)
