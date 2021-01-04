@@ -248,3 +248,18 @@ foo ; #(NIL NIL (X Y Z) NIL)
 (setf (car (aref foo 2)) (make-hash-table)) ; #S(HASH-TABLE)
 (setf (gethash 'zoink (car (aref foo 2))) 5) ; 5
 foo ; #(NIL NIL (#S(HASH-TABLE (ZOINK . 5)) Y Z) NIL)
+
+;; Hashtable
+(defparameter x (make-hash-table)) ; #S(HASH_TABLE)
+(gethash 'yup x) ; NIL; NIL
+
+;; Hashtable using setf
+(defparameter x (make-hash-table)) ; #S(HASH_TABLE)
+(setf (gethash 'yup x) 25) ; 25
+(gethash 'yup x) ; 25 ; T
+
+(defparameter *drink-order* (make-hash-table)) ; #S(HASH_TABLE)
+(setf (gethash 'bill *drink-order*) 'double-expresso) ; DOUBLE-EXPRESSO
+(setf (gethash 'lisa *drink-order*) 'small-drip-coffee) ; SMALL-DRIP-COFFEE
+(setf (gethash 'john *drink-order*) 'medium-latte) ; MEDIUM-LATTE
+(gethash 'lisa *drink-order*) ; SMALL-DRIP-COFFEE
